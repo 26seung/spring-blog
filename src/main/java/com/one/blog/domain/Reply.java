@@ -1,7 +1,6 @@
 package com.one.blog.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
