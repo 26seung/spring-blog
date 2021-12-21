@@ -3,7 +3,8 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-    <h3>회원가입 화면</h3>
+
+    <h3>로그인 화면</h3>
 
 <form action="/action_page.php">
   <div class="form-group">
