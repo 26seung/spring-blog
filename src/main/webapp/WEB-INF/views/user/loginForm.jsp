@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+    <h3>회원가입 화면</h3>
+
+<form action="/action_page.php">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="username" class="form-control" placeholder="Enter username" id="username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" placeholder="Enter password" id="password">
+  </div>
+  <button type="submit" class="btn btn-primary">로그인</button>
+</form>
+
+</div>
+
+<%@ include file="../layout/footer.jsp"%>
+
