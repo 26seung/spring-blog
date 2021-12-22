@@ -90,3 +90,9 @@ Post,Put,Delete 요청은 Body에 데이터를 담아 보내므로 json 형태�
 
     javax.persistence.Id: 관계형 DB에서 사용. 
     import org.springframework.data.annotation.Id: JPA에 의해 지원되지 않는 Nosql이나 프레임워크에서 사용됨.
+
+
+#### ajax 를 사용하는 이유
+1. 비동기 통신 방법이기 때문
+2. 서버로부터 응답을 받을 때 JSON 데이터를 받기 위해서
+   1. 웹은 HTML파일을 받고 앱은 데이터 (JSON)을 받는다.
