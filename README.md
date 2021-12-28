@@ -20,7 +20,13 @@ yml 을 사용하는 이유는 무었일까?
 
 스프링부트는 JSP를 지원하지 않는다. 보통 머스태치, 타임리프 등을 이용하며 jsp 를 사용하기 위해 관련 라이브러리를 설치해 이용해야한다,
 
-
+##### jsp 파일 사용
+spring-boot-starter-web 에 포함된 tomcat 은 JSP 엔진을 포함하고 있지 않다. 
+jsp 파일은 Springboot 의 templates 폴더안에서 작동하지 않는다. 
+그래서 jsp를 적용하기 위해서는 아래와 같은 의존성을 추가해야한다.
+            
+    implementation 'javax.servlet:jstl'
+    implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
 
 ---
 
@@ -96,3 +102,16 @@ Post,Put,Delete 요청은 Body에 데이터를 담아 보내므로 json 형태�
 1. 비동기 통신 방법이기 때문
 2. 서버로부터 응답을 받을 때 JSON 데이터를 받기 위해서
    1. 웹은 HTML파일을 받고 앱은 데이터 (JSON)을 받는다.
+
+---
+#### 트랜잭션
+
+트랜잭션은 데이터베이스의 상태를 변경시키는 하나의 논리적 기능을 수행하기 위한 작업의 단위 또는 한꺼번에 모두 수행되어야 하는 일련의 연산을 말한다.
+
+##### 트랜잭션의 성질
+1. 원자성 
+2. 일관성
+3. 독립성
+4. 영속성
+
+ㅁ
