@@ -6,7 +6,7 @@
 
     <h3>로그인 화면</h3>
 
-<form action="/action_page.php">
+<form>
   <div class="form-group">
     <label for="username">Username</label>
     <input type="username" class="form-control" placeholder="Enter username" id="username">
@@ -15,10 +15,11 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" placeholder="Enter password" id="password">
   </div>
-  <button type="submit" class="btn btn-primary">로그인</button>
+  <button type="btn-login" class="btn btn-primary">로그인</button>
 </form>
 
 </div>
 
+<script src="/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 
