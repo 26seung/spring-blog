@@ -23,6 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
+    @Column(unique = true)
     @Size(min = 3, message = "아이디는 3글자 이상이여야 합니다.")
     private String username;
     @NotBlank
