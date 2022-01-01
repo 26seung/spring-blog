@@ -20,6 +20,10 @@ yml 을 사용하는 이유는 무었일까?
 
 스프링부트는 JSP를 지원하지 않는다. 보통 머스태치, 타임리프 등을 이용하며 jsp 를 사용하기 위해 관련 라이브러리를 설치해 이용해야한다,
 
+#### View 설정
+
+스프링에서는 jsp 파일보다는 타임리프, 머스태치 등의 라이브러리를 지원한다고 한다. 그럼에도 jsp를 사용하기 위해서는 필요한 라이브러리를 설치해야만 한.
+
 ##### jsp 파일 사용
 spring-boot-starter-web 에 포함된 tomcat 은 JSP 엔진을 포함하고 있지 않다. 
 jsp 파일은 Springboot 의 templates 폴더안에서 작동하지 않는다. 
@@ -27,6 +31,13 @@ jsp 파일은 Springboot 의 templates 폴더안에서 작동하지 않는다.
             
     implementation 'javax.servlet:jstl'
     implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+
+#### 스프링 security 태그 라이브러리
+
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+
+를 view 파일에 추가하여 사용한다. 사용시 `권한처리`를 일일히 if문 분기처리를 사용하지 않고도 간단히 처리해줄수 있다.
+
 
 ---
 
@@ -114,4 +125,7 @@ Post,Put,Delete 요청은 Body에 데이터를 담아 보내므로 json 형태�
 3. 독립성
 4. 영속성
 
-ㅁ
+---
+
+#### View 설정
+
