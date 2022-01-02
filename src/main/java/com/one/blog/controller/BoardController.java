@@ -1,22 +1,18 @@
 package com.one.blog.controller;
 
+import com.one.blog.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserController {
+public class BoardController {
 
-    @GetMapping({"/blog","/"})
-    public String index(){
-        return "index";
-    }
+    @Autowired
+    BoardService boardService;
 
-    @GetMapping("/auth/joinForm")
-    public String joinForm(){
-        return "user/joinForm";
-    }
-    @GetMapping("/auth/loginForm")
-    public String loginForm(){
-        return "user/loginForm";
+    @GetMapping("/board/saveForm")
+    public String saveForm() {
+        return "board/saveForm";
     }
 }
