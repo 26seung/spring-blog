@@ -16,7 +16,7 @@ let index ={
             }
             $.ajax({
                 type: "POST",
-                url: "/api/joinProc",
+                url: "/auth/joinProc",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8"
             }).done(function(res){
