@@ -6,7 +6,7 @@
 
     <h3>로그인 화면</h3>
 
-<form>
+<form action="/auth/loginProc" method="post">
   <div class="form-group">
     <label for="username">Username</label>
     <input type="username" name="username" class="form-control" placeholder="Enter username" id="username">
