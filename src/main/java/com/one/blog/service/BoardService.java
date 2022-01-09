@@ -23,15 +23,20 @@ public class BoardService {
         board.setUser(user);
         boardRepository.save(board);
     }
-
+    @Transactional(readOnly = true)
     public Page<Board> 글목록(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
 
+    @Transactional
     public Board 상세보기(long id){
         return boardRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("글 상세보기 실패 : 아이디를 찾을수 없습니다.");
         });
+    }
+    @Transactional
+    public void 글삭제(Long id){
+        boardRepository.deleteById(id);
     }
 
 }

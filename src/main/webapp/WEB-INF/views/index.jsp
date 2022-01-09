@@ -4,7 +4,6 @@
 
 <div class="container">
     <h3>블로그 만들기 연습장</h3>
-
     <c:forEach var="board" items="${boards.content}">
     <div class="card">
       <div class="card-body">
