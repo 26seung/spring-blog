@@ -30,4 +30,14 @@ public class UserService {
     public User 로그인(User user){
         return userRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
     }
+    @Transactional
+    public void 회원수정(User user){
+        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
+            return new IllegalArgumentException("회원 정보가 없습니다.");
+        });
+        String rawPassword = user.getPassword();
+        String encPassword = encoder.encode(rawPassword);
+        persistance.setPassword(encPassword);
+        persistance.setEmail(user.getEmail());
+    }
 }

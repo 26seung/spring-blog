@@ -132,3 +132,17 @@ Post,Put,Delete 요청은 Body에 데이터를 담아 보내므로 json 형태�
 
 #### View 설정
 
+
+
+---
+
+### KAKAO LOGIN
+
+웹서버 주소 : http://localhost:8080
+클라이언트 키 : 759b749f2e8e045f970194c82dc89fce
+
+로그인 콜백 주소 : http://localhost:8080/oauth2/callback/kakao
+
+로그인 요청 주소 (GET) : https://kauth.kakao.com/oauth/authorize?client_id=759b749f2e8e045f970194c82dc89fce&redirect_uri=http://localhost:8080/oauth2/callback/kakao&response_type=code
+
+토큰 발급 요청 주소 (POST) : https://kauth.kakao.com/oauth/token
