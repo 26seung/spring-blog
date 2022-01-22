@@ -1,5 +1,8 @@
 package com.one.blog.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.one.blog.domain.OAuthToken;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -59,7 +62,34 @@ public class UserController {
                 String.class
         );
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        OAuthToken oAuthToken = null;
+        try {
+            oAuthToken = objectMapper.readValue(res.getBody(),OAuthToken.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("access : "+oAuthToken.getAccess_token());
 
-        return res.getBody();
+        // 사용자 정보 가져오기
+        RestTemplate rt2 = new RestTemplate();
+
+        // HttpHeader 오브젝트 생성
+        HttpHeaders headers2 = new HttpHeaders();
+        headers2.add("Authorization","Bearer " + oAuthToken.getAccess_token());
+        headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        // HttpHeader 와  HttpBody 를 하나의 오브젝트에 담기
+        HttpEntity<MultiValueMap<String,String>> kakaoProfileRequest2 =
+                new HttpEntity<>(headers2);
+        // Http 요청하기
+        ResponseEntity<String> res2 = rt.exchange(
+                "https://kapi.kakao.com/v2/user/me",
+                HttpMethod.POST,
+                kakaoProfileRequest2,
+                String.class
+        );
+
+        return res2.getBody();
     }
 }
