@@ -23,3 +23,6 @@ spring:
 #  jackson:
 #    serialization:
 #      fail-on-empty-beans: false
+
+seung:
+  key: seung1234
