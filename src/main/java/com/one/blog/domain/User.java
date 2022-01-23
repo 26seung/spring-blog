@@ -33,6 +33,7 @@ public class User {
     private String email;
     @Enumerated(value = EnumType.STRING)
     private Erole role;
+    private String oauth;
     @CreationTimestamp
     private Timestamp createDate;
 
