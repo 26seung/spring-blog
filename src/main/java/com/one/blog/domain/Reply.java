@@ -1,5 +1,6 @@
 package com.one.blog.domain;
 
+import com.one.blog.dto.ReplySaveRequestDto;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -35,4 +36,13 @@ public class Reply {
 
     @CreationTimestamp
     private LocalDateTime createDate;
+
+
+    public void update(User user, Board board, String content){
+        setUser(user);
+        setBoard(board);
+        setContent(content);
+    }
+
+
 }
