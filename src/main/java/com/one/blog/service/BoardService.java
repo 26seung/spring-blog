@@ -1,8 +1,12 @@
 package com.one.blog.service;
 
 import com.one.blog.domain.Board;
+import com.one.blog.domain.Reply;
 import com.one.blog.domain.User;
+import com.one.blog.dto.ReplySaveRequestDto;
 import com.one.blog.repository.BoardRepository;
+import com.one.blog.repository.ReplyRepository;
+import com.one.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +19,11 @@ import java.util.List;
 public class BoardService {
 
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private BoardRepository boardRepository;
+    @Autowired
+    private ReplyRepository replyRepository;
 
     @Transactional
     public void 글쓰기(Board board, User user){
@@ -46,5 +54,35 @@ public class BoardService {
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
     };
+
+    @Transactional
+    public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+
+        // 네이티브 쿼리 사용
+        replyRepository.mSave(replySaveRequestDto);
+
+        // b안. 영속화 방식
+        // 이러한 영속화 과정이 귀찮다면 네이티브쿼리를 사용하여 진행이 가능하다
+        User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(()->{
+            return new IllegalArgumentException("글 찾기 실패 : 유저 ID 를 찾을수 없습니다");
+        });
+        Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(()->{
+            return new IllegalArgumentException("글 찾기 실패 : 게시글 ID 를 찾을수 없습니다");
+        });
+        Reply reply = Reply.builder()
+                .user(user)
+                .board(board)
+                .content(replySaveRequestDto.getContent())
+                .build();
+
+        replyRepository.save(reply);
+
+        // c안. DTO 내부 메서드를 만들어 사용
+
+//        Reply reply = new Reply();
+//        reply.update(user, board, replySaveRequestDto.getContent());
+
+
+    }
 
 }
