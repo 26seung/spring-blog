@@ -29,14 +29,17 @@
 
     
          <div class="card">
-
-           <div class="card-body">
-             <textarea class="form-control" rows="1"></textarea>
-           </div>
-           <div class="card-footer">
-             <button class="btn btn-primary">등록</button>
-           </div>
-
+          <form>
+              <input type="hidden" id="userId" value="${principal.user.id}" />
+              <input type="hidden" id="boardId" value="${board.id}" />
+              <div class="card-body">
+                <textarea id="reply-content" class="form-control" rows="1"></textarea>
+              </div>
+              <div class="card-footer">
+                <button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
+              </div>
+           </form>
+          
          </div>
 
          <div class="card">
@@ -44,13 +47,15 @@
           <ul id="reply-box" class="list-group">
             
             <c:forEach var="reply" items="${board.replys}">
-              <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
-                <div>${reply.content}</div>
-                <div class="d-flex">
-                  <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+
+                <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
+                  <div>${reply.content}</div>
+                  <div class="d-flex">
+                    <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+                  
                   <c:if test="${reply.user.id eq principal.user.id}">
                     <button class="badge">삭제</button>
-            </c:if>
+                  </c:if>
                   
                 </div>
               </li>
