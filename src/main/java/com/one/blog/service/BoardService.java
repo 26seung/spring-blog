@@ -59,23 +59,23 @@ public class BoardService {
     public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
 
         // 네이티브 쿼리 사용
-        replyRepository.mSave(replySaveRequestDto);
-
+         replyRepository.mSave(replySaveRequestDto.getUserId(),replySaveRequestDto.getBoardId(),replySaveRequestDto.getContent());
+//        System.out.println(reply);
         // b안. 영속화 방식
         // 이러한 영속화 과정이 귀찮다면 네이티브쿼리를 사용하여 진행이 가능하다
-        User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(()->{
-            return new IllegalArgumentException("글 찾기 실패 : 유저 ID 를 찾을수 없습니다");
-        });
-        Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(()->{
-            return new IllegalArgumentException("글 찾기 실패 : 게시글 ID 를 찾을수 없습니다");
-        });
-        Reply reply = Reply.builder()
-                .user(user)
-                .board(board)
-                .content(replySaveRequestDto.getContent())
-                .build();
-
-        replyRepository.save(reply);
+//        User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(()->{
+//            return new IllegalArgumentException("글 찾기 실패 : 유저 ID 를 찾을수 없습니다");
+//        });
+//        Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(()->{
+//            return new IllegalArgumentException("글 찾기 실패 : 게시글 ID 를 찾을수 없습니다");
+//        });
+//        Reply reply = Reply.builder()
+//                .user(user)
+//                .board(board)
+//                .content(replySaveRequestDto.getContent())
+//                .build();
+//
+//        replyRepository.save(reply);
 
         // c안. DTO 내부 메서드를 만들어 사용
 

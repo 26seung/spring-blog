@@ -26,6 +26,7 @@ public class Reply {
     @NotBlank
     private String content;
 
+    // [주의] yml 설정에서 "physical-strategy" 설정을 만지지 않으면 board_id 형태로 테이블이 생성된다
     @ManyToOne
     @JoinColumn(name="boardId")
     private Board board;
@@ -37,6 +38,16 @@ public class Reply {
     @CreationTimestamp
     private LocalDateTime createDate;
 
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", board=" + board +
+                ", user=" + user +
+                ", createDate=" + createDate +
+                '}';
+    }
 
     public void update(User user, Board board, String content){
         setUser(user);
